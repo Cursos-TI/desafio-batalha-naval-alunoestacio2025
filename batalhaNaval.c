@@ -1,38 +1,59 @@
 #include <stdio.h>
 
+#define LINHAS 10
+#define COLUNAS 10
+
 int main() {
-    
+
+
     // Letras das colunas (horizontal)
-    char horizontal[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+    char letras[LINHAS] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
     // Números das linhas (vertical)
-    int vertical[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int numeros[COLUNAS] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    int tabuleiro[10][10] = {0};
+    int tabuleiro[LINHAS][COLUNAS] = {0};
 
-    //ADICIONANDO NAVIO
-    tabuleiro[2][1] = 3;
-    tabuleiro[2][2] = 3;
-    tabuleiro[2][3] = 3;
+   /*
     tabuleiro[6][6] = 3;
     tabuleiro[7][6] = 3;
-    tabuleiro[8][6] = 3;
+    tabuleiro[8][6] = 3; */
 
     // Título do tabuleiro
     printf("   TABULEIRO BATALHA NAVAL\n   ");
 
-    // Imprime letras do cabeçalho
-    for (int i = 0; i < 10; i++) {
-        printf("%c ", horizontal[i]);
+    // Imprime letras das linhas
+    for (int i = 0; i < LINHAS; i++) {
+        printf("%c ", letras[i]);
     }
     printf("\n");
 
-    // Imprime linhas do tabuleiro
-    for (int i = 0; i < 10; i++) {
-        printf("%2d ", vertical[i]);
-        for (int j = 0; j < 10; j++) {
+    //##### LOOP ALINHADO - ÍNICIO #####
+
+    // Imprime números + interior do tabuleiro
+    for (int i = 0; i < COLUNAS; i++) {
+        printf("%2d ", numeros[i]);
+        for (int j = 0; j < LINHAS; j++) {
             printf("%d ", tabuleiro[i][j]);
         }
+    // ADICONANDO NAVIO
+    // HORIZONTAL
+     int coluna = 2, linha = 1;
+     for (int i = 0; i < 3; i++) {
+     tabuleiro[coluna][linha + i] = 3;
+    }
+    // VERTICAL
+     coluna = 6, linha = 6;
+     for (int i = 0; i < 3; i++){
+     tabuleiro[coluna + i][linha] = 3;
+    }
+    // DIAGONAL
+     coluna = 1, linha = 9;
+     for (int i = 0; i < 3; i++){
+     tabuleiro[coluna + i][linha - i] = 3;
+    }
+
+
         printf("\n");
     }
 
